@@ -1,0 +1,107 @@
+/* ===== Warna (tema terang) ===== */
+:root {
+  --bg: #fff5f7;
+  --card: #fff;
+  --ink: #3a2530;
+  --mute: #8a6f7a;
+  --pink: #e8476e;
+  --line: #f3d3dc;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== Warna (tema gelap, otomatis mengikuti HP/browser) ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1418;
+    --card: #2a1d23;
+    --ink: #f6e6ec;
+    --mute: #b79aa6;
+    --pink: #ff6b8f;
+    --line: #4a3039;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1418;
+  --card: #2a1d23;
+  --ink: #f6e6ec;
+  --mute: #b79aa6;
+  --pink: #ff6b8f;
+  --line: #4a3039;
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  min-height: 100vh;
+}
+
+main { max-width: 520px; margin: 0 auto; padding: 24px 16px 40px; }
+h1 { text-align: center; margin: 8px 0 4px; font-size: 1.9rem; }
+.sub { text-align: center; color: var(--mute); margin: 0 0 24px; }
+
+/* ===== Kotak level 1-12 ===== */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.lv {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 6px;
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.lv b { display: block; font-size: 1.3rem; }
+.lv small { color: var(--mute); }
+.lv.open { border-color: var(--pink); }
+.lv.open small { color: var(--pink); }
+.lv:active { transform: scale(.96); }
+
+/* ===== Popup ===== */
+.ov {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, .55);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 16px; z-index: 9;
+}
+.ov.on { display: flex; }
+.box {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%; max-width: 380px;
+  text-align: center;
+  max-height: 92vh; overflow: auto;
+}
+.box h2 { margin: 0 0 6px; }
+.box p { color: var(--mute); margin: 6px 0 12px; }
+
+/* ===== Game ===== */
+canvas {
+  width: 100%; max-width: 300px; aspect-ratio: 1;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  touch-action: none;
+}
+.pad { display: grid; grid-template-columns: repeat(3, 56px); gap: 6px; justify-content: center; margin: 12px 0; }
+.pad button { height: 48px; font-size: 1.3rem; background: var(--line); color: var(--ink); border: 0; border-radius: 10px; cursor: pointer; }
+.b { display: inline-block; text-decoration: none; background: var(--pink); color: #fff; border: 0; border-radius: 12px; padding: 10px 18px; font: inherit; cursor: pointer; }
+
+/* ===== Game kartu (Level 2) ===== */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0 12px; }
+.card { aspect-ratio: 1; font-size: 1.6rem; background: var(--line); color: var(--mute); border: 0; border-radius: 12px; cursor: pointer; }
+.card.up { background: var(--card); border: 2px solid var(--pink); color: var(--ink); }
+.sc { font-weight: bold; color: var(--pink); }
+
+/* ===== Kartu kenangan ===== */
+.mem { text-align: left; background: var(--bg); border-radius: 12px; padding: 12px; margin: 8px 0; }
+.mem small { color: var(--mute); }
